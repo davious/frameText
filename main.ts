@@ -1,14 +1,14 @@
-export function frameText(text: string, minWidth = 0): string {
+export function frameText(text: string, minFrameWidth = 0): string {
   const words = text.split(/\s+/);
   const minWidthOfText = Math.max(...words.map((w) => w.length));
-  const innerWidth = Math.max(minWidthOfText, minWidth - 4);
+  const innerWidth = Math.max(minWidthOfText, minFrameWidth - 4);
   const top = "+" + "-".repeat(innerWidth + 2) + "+";
   const chunkedWords = chunkWords(words, innerWidth);
 
   const cert = [];
   cert.push(top);
   cert.push(
-    ...chunkedWords.map((w) => "| " + centeredWord(w, innerWidth) + " |"),
+    ...chunkedWords.map((w) => "| " + centerText(w, innerWidth) + " |"),
   );
   cert.push(top);
   return cert.join("\n");
@@ -33,9 +33,9 @@ export function chunkWords(words: string[], width: number): string[] {
   return chunkedWords;
 }
 
-export function centeredWord(word: string, width: number): string {
-  const fillLength = Math.max(width - word.length, 0);
+export function centerText(text: string, width: number): string {
+  const fillLength = Math.max(width - text.length, 0);
   const halfFill = Math.floor(fillLength / 2);
   const rightOffset = fillLength % 2;
-  return " ".repeat(halfFill) + word + " ".repeat(halfFill + rightOffset);
+  return " ".repeat(halfFill) + text + " ".repeat(halfFill + rightOffset);
 }
