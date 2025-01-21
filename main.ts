@@ -1,5 +1,5 @@
 export function frameText(text: string, minWidth = 0): string {
-  const words = text.split(/\W/);
+  const words = text.split(/\s+/);
   const minWidthOfText = Math.max(...words.map((w) => w.length));
   const innerWidth = Math.max(minWidthOfText, minWidth - 4);
   const top = "+" + "-".repeat(innerWidth + 2) + "+";
