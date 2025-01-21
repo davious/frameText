@@ -1,3 +1,10 @@
+/**
+ * Frames text to a set width or fir to the longest word
+ *
+ * @param text The text to frame
+ * @param minFrameWidth The minimum frame width allowed, default is longest word (plus 4)
+ * @returns framed text
+ */
 export function frameText(text: string, minFrameWidth = 0): string {
   const words = text.split(/\s+/);
   const minWidthOfText = Math.max(...words.map((w) => w.length));
@@ -14,6 +21,7 @@ export function frameText(text: string, minFrameWidth = 0): string {
   return cert.join("\n");
 }
 
+/** Chunks words together (space seperated, as the width allows) */
 export function chunkWords(words: string[], width: number): string[] {
   const chunkedWords = [];
   let line = "";
@@ -33,6 +41,7 @@ export function chunkWords(words: string[], width: number): string[] {
   return chunkedWords;
 }
 
+/** spaces text to be centered to a given width, leans left */
 export function centerText(text: string, width: number): string {
   const fillLength = Math.max(width - text.length, 0);
   const halfFill = Math.floor(fillLength / 2);

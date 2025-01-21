@@ -1,6 +1,18 @@
 import { assertEquals } from "@std/assert";
 import { frameText } from "./main.ts";
 
+Deno.test(function Hi() {
+  assertEquals(
+    frameText("Hi, this is framed text", 15),
+    `
++-------------+
+| Hi, this is |
+| framed text |
++-------------+
+`.trim(),
+  );
+});
+
 Deno.test(function Certificate() {
   assertEquals(
     frameText("Certificate"),
